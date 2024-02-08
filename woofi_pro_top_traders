@@ -1,0 +1,13 @@
+SELECT
+    account_id,
+    SUM(volume) AS total_volume
+FROM
+    dune.woofianalytics.dataset_woofi_pro_daily_volume_by_account
+WHERE
+    date_parse(date, '%Y-%m-%dT%H:%i:%sZ') >= CURRENT_TIMESTAMP - INTERVAL '30' DAY
+GROUP BY
+    account_id
+ORDER BY
+    total_volume DESC;
+    
+    
